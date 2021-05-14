@@ -4,14 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Maps from '../Maps'
-import About from '../Profile.js'
+import Profile from '../Profile' 
 import Settings from '../Settings'
 
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
   return (
-      // <NavigationContainer >
+     
 
     <Tab.Navigator
       initialRouteName="Feed"
@@ -21,7 +21,7 @@ export default function TabNavigator() {
       }}  
       >
       <Tab.Screen
-        name="Feed"
+        name="Maps"
         component={Maps}
         options={{
             tabBarLabel: 'Home',
@@ -33,7 +33,7 @@ export default function TabNavigator() {
 
       <Tab.Screen
         name="Profile"
-        component={About}
+        component={Profile}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
@@ -54,7 +54,7 @@ export default function TabNavigator() {
             /> */}
 
     </Tab.Navigator>
-        /* </NavigationContainer>  */
+        
   );
 }
 
