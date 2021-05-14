@@ -110,8 +110,6 @@ PARKIZONE Uses Npm For Client Side Application and Server Side .
   ```sh
   npm install npm@latest -g
   ```
-
-  ```
 ### Installation
 
 1. Clone the repo
@@ -176,6 +174,215 @@ Project Link: [https://github.com/Parki-Zone/client-side](https://github.com/Par
 
 PARKIZONE is made available under the <a href="https://github.com/Parki-Zone/client-side/blob/main/LICENSE">MIT</a>
 
+## Atelier API
+The different data services for this api are
+1. Client
+2. Orders
+3. Parkings
 
+### Use of Parameters :
+In an HTTP POST, GET, DELETE or PUT request, the parameters are not sent along with the URI, but in the request body. Parameters noted for each route below follow this standard. 
 
+## Client API
+### Create a user  
+Add a new user to the database.
+ ```sh
+ POST '/user/create'
+ ```
+ Query Parameters
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+            <td>UserId</td>
+            <td>INTEGER</td>
+            <td><code>Automatically associate an ID for the user that's being added</code></td>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td>STRING</td>
+            <td><code>Username for the user that's being added</code></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>STRING</td>
+            <td><code>Email for the user that's being added</code></td>
+        </tr>
+         <tr>
+            <td>Password</td>
+            <td>STRING</td>
+            <td><code>Password for the user that's being added</code></td>
+        </tr>
+    </tbody>
+  </table>
 
+### Login a user
+User can access his account using his Email and Password
+ ```sh
+ POST '/login'
+ ```
+ Query Parameters
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <tr>
+            <td>Email</td>
+            <td>STRING</td>
+            <td><code>Email of the user that's going to be compared to the one saved on the db </code></td>
+        </tr>
+         <tr>
+            <td>Password</td>
+            <td>STRING</td>
+            <td><code>Password of the user that's going to be compared to the hashed one on db </code></td>
+        </tr>
+    </tbody>
+  </table>
+
+  ### Delete a user
+  The admin can delete the user
+ ```sh
+ DELETE '/delete/:id'
+ ```
+<table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <tr>
+            <td>UserId</td>
+            <td>INTEGER</td>
+            <td><code>Required UserId of the user that's going to be deleted</code></td>
+        </tr>
+    </tbody>
+  </table>
+
+  ### Update a user
+  User will be able to update his profile. 
+ ```sh
+ PUT '/Profile/:id'
+ ```
+<table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <tr>
+            <td>UserId</td>
+            <td>INTEGER</td>
+            <td><code>Required UserId of the user that's going to be deleted</code></td>
+        </tr>
+        <tr>
+        <tr>
+            <td>Username</td>
+            <td>STRING</td>
+            <td><code>Required UserId of the user that's going to be deleted</code></td>
+        </tr>
+    </tbody>
+  </table>
+
+## Order API
+
+### Create an Order  
+Add a new Order to the database.
+ ```sh
+ POST '/order/create'
+ ```
+ Query Parameters
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+            <td>OrderId</td>
+            <td>INTEGER</td>
+            <td><code>ID of the order</code></td>
+        </tr>
+          <tr>
+            <td>UserId</td>
+            <td>INTEGER</td>
+            <td><code>ID of the user that passed the order</code></td>
+        </tr>
+    <tr>
+            <td>Date</td>
+            <td>STRING</td>
+            <td><code>The data of the passed order</code></td>
+        </tr>
+        <tr>
+            <td>Hours</td>
+            <td>STRING</td>
+            <td><code>The hour of the passed order</code></td>
+        </tr>
+    </tbody>
+  </table>
+
+  Response
+   ```sh
+ Status: 200 OK
+ ```
+
+### Create an Order  
+Add a new Order to the database.
+ ```sh
+ GET '/orders'
+ ```
+  Response
+   ```sh
+ Status: 200 OK
+ ```
+ Result
+   ```sh
+ [
+    {
+        "orderId": 1,
+        "user_id": 1,
+        "date": "11/12/2021",
+        "hour": "17:15pm",
+        "createdAt": "2021-05-07T21:52:48.000Z",
+        "updatedAt": "2021-05-07T21:52:48.000Z"
+    },
+    {
+        "orderId": 2,
+        "user_id": 2,
+        "date": "Tomorrow",
+        "hour": null,
+        "createdAt": "2021-05-08T00:20:41.000Z",
+        "updatedAt": "2021-05-08T00:20:41.000Z"
+    },
+    {
+        "orderId": 3,
+        "user_id": 1,
+        "date": "11/12/2021",
+        "hour": "18:15pm",
+        "createdAt": "2021-05-08T00:21:46.000Z",
+        "updatedAt": "2021-05-08T00:21:46.000Z"
+    }
+]
+ ```
